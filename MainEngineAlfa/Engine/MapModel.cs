@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MainEngineAlfa.Engine
 {
-    class MapCreator
+    class MapModel
     {
     }
 }
