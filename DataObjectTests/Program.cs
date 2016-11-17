@@ -10,6 +10,8 @@ namespace DataObjectTests
     {
         static void Main(string[] args)
         {
+            MapValidation mapTest = new MapValidation();
+            Console.ReadKey();
         }
     }
 }

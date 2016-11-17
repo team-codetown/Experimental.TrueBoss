@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace DataObjects.Map
 {
-    class Field
+    public class Field
     {
         public int cordX { get; set; }
         public int cordY { get; set; }
         public Resource Resource { get; set; }
+
+        public Field()
+        {
+            Resource = new Resource();
+        }
     }
 }
