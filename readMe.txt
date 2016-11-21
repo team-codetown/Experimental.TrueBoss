@@ -25,3 +25,5 @@ To create class or action, add -> new item -> class, name it properly and add to
 
 
 dodatkowe informacje
+
+Pawel tu jest
