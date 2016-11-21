@@ -55,6 +55,10 @@ namespace DataObjects.Map
             // Tutaj Panie Pawle trzeba zrobic 10000 pól i zapisac je do zmiennej Fields (ktora jest wyzej)
             // Mozesz tworzyc sobie funkcje pomocnicze. Nawet powinieneś ...
             // 
+            for (int i = 0; i < 50; i++)
+            {
+                
+            }
         }
     }
 }
