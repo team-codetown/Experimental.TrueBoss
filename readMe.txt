@@ -22,3 +22,6 @@ Internet connection
 =========={ How To Work }==========
 
 To create class or action, add -> new item -> class, name it properly and add to right testing class functions which will be used to test created structure.
+
+
+dodatkowe informacje
