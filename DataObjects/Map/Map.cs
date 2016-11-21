@@ -13,41 +13,57 @@ namespace DataObjects.Map
         public Map()
         {
             Fields = new List<Field>();
+
+            for (int i = 0; i < 100; i++)
+            {
+                for (int j = 0; j < 100; j++)
+                {
+
+                    var pole = new Field();
+                    pole.Resource.Name = "";
+                    pole.cordX = j;
+                    pole.cordY = i;
+                    Fields.Add(pole);
+
+                }
+            }
+
+
             InitializeMap();
-            for (int i = 0; i < 5000; i++)
-            {
-                Fields.Add(new Field());
-            }
-            for (int i = 0; i < 3000; i++)
-            {
-                var pole = new Field();
-                pole.Resource.Name = "Drewno";
-                Fields.Add(pole);
-            }
-            for (int i = 0; i < 500; i++)
-            {
-                var pole = new Field();
-                pole.Resource.Name = "Żelazo";
-                Fields.Add(pole);
-            }
-            for (int i = 0; i < 500; i++)
-            {
-                var pole = new Field();
-                pole.Resource.Name = "Złoto";
-                Fields.Add(pole);
-            }
-            for (int i = 0; i < 500; i++)
-            {
-                var pole = new Field();
-                pole.Resource.Name = "Kamień";
-                Fields.Add(pole);
-            }
-            for (int i = 0; i < 500; i++)
-            {
-                var pole = new Field();
-                pole.Resource.Name = "Węgiel";
-                Fields.Add(pole);
-            }
+            //for (int i = 0; i < 5000; i++)
+            //{
+            //    Fields.Add(new Field());
+            //}
+            //for (int i = 0; i < 3000; i++)
+            //{
+            //    var pole = new Field();
+            //    pole.Resource.Name = "Drewno";
+            //    Fields.Add(pole);
+            //}
+            //for (int i = 0; i < 500; i++)
+            //{
+            //    var pole = new Field();
+            //    pole.Resource.Name = "Żelazo";
+            //    Fields.Add(pole);
+            //}
+            //for (int i = 0; i < 500; i++)
+            //{
+            //    var pole = new Field();
+            //    pole.Resource.Name = "Złoto";
+            //    Fields.Add(pole);
+            //}
+            //for (int i = 0; i < 500; i++)
+            //{
+            //    var pole = new Field();
+            //    pole.Resource.Name = "Kamień";
+            //    Fields.Add(pole);
+            //}
+            //for (int i = 0; i < 500; i++)
+            //{
+            //    var pole = new Field();
+            //    pole.Resource.Name = "Węgiel";
+            //    Fields.Add(pole);
+            //}
         }
 
         private void InitializeMap()
