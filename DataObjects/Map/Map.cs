@@ -6,189 +6,158 @@ using System.Threading.Tasks;
 
 namespace DataObjects.Map
 {
+
     public class Map
     {
         public List<Field> Fields { get; set; }
-
+        public Random Seed { get; set; }
+        private int[] ilosciSurowcow;
         public Map()
         {
             Fields = new List<Field>();
+            Seed = new Random();
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 1; i <= 100; i++)
             {
-                for (int j = 0; j < 100; j++)
+                for (int j = 1; j <= 100; j++)
                 {
 
                     var pole = new Field();
-                    pole.Resource.Name = "";
+                    pole.Resource.Name = " ";
                     pole.cordX = j;
                     pole.cordY = i;
                     Fields.Add(pole);
-
                 }
             }
 
-            Fields = MapGenerator.GenerateMap();
             InitializeMap();
-            //for (int i = 0; i < 5000; i++)
-            //{
-            //    Fields.Add(new Field());
-            //}
-            //for (int i = 0; i < 3000; i++)
-            //{
-            //    var pole = new Field();
-            //    pole.Resource.Name = "Drewno";
-            //    Fields.Add(pole);
-            //}
-            //for (int i = 0; i < 500; i++)
-            //{
-            //    var pole = new Field();
-            //    pole.Resource.Name = "Żelazo";
-            //    Fields.Add(pole);
-            //}
-            //for (int i = 0; i < 500; i++)
-            //{
-            //    var pole = new Field();
-            //    pole.Resource.Name = "Złoto";
-            //    Fields.Add(pole);
-            //}
-            //for (int i = 0; i < 500; i++)
-            //{
-            //    var pole = new Field();
-            //    pole.Resource.Name = "Kamień";
-            //    Fields.Add(pole);
-            //}
-            //for (int i = 0; i < 500; i++)
-            //{
-            //    var pole = new Field();
-            //    pole.Resource.Name = "Węgiel";
-            //    Fields.Add(pole);
-            //}
         }
 
         private void InitializeMap()
         {
-            // Tutaj Panie Pawle trzeba zrobic 10000 pól i zapisac je do zmiennej Fields (ktora jest wyzej)
-            // Mozesz tworzyc sobie funkcje pomocnicze. Nawet powinieneś ...
-            // 1. sync + pull
-            // 2. changes + commit
-            // 3. sync + push
-          
-        }
-    }
-
-    static public class MapGenerator
-    {
-        static Random rand = new Random();
-
-        static public List<Field> GenerateMap()
-        {
-
-            List<Field> Fields = new List<Field>();
-            string[,] Map = new string[100, 100];
-            //Map[1, 1] = PolaMapy.Woda;
-
-            object[] Pola = new object[6];
-
-            Pola[0] = "Węgiel";
-            Pola[1] = "Drewno";
-            Pola[2] = "Żelazo";
-            Pola[3] = "Złoto";
-            Pola[4] = "Kamień";
-            Pola[5] = "Woda";
-            int losujX = 0;
-            int losujY = 0;
-
-            bool emptyMap;
-
-            // losowanie 5% każdego surowca, czyli 25 % mapy juz zajete
-            for (int j = 0; j < 500; j++)
+            var listaProporcji = randomizeProportions();
+            ilosciSurowcow = new int[5];
+            var j = 0;
+            foreach (var item in listaProporcji)
             {
-                for (int i = 0; i < 5; i++)
+                ilosciSurowcow[j] = item.Value;
+                j++;
+            }
+            var listaPunktow = randomizePoints();
+            listaPunktow.Remove(listaPunktow.First());
+
+            var i = 0;
+            j = 0;
+            foreach (var item in listaProporcji)
+            {
+                SetResource(item.Key, j, listaPunktow[i]);
+                SetResource(item.Key, j, listaPunktow[i + 1]);
+                SetResource(item.Key, j, listaPunktow[i+2]);
+                SetResource(item.Key, j, listaPunktow[i + 3]);
+                i += 4;
+                j++;
+            }
+
+            //DrawMap();
+        }
+
+        private void DrawMap()
+        {
+            for (int i = 1; i <= 100; i++)
+            {
+                var list = Fields.Select(n => n).Where(x => x.cordY == i).OrderBy(n => n.cordX).ToList();
+                foreach (var item in list)
                 {
-                    do
-                    {
-                        losujWspolrzedne(ref losujX, ref losujY);
-                        emptyMap = true;
+                    Console.Write(item.Resource.Name[0]);
+                }
+                Console.WriteLine();
+            }
+        }
 
+        private void SetResource(string key, int v, Point point)
+        {
+            if (ilosciSurowcow[v] > 0)
+            {
+            if (point.X > 100) return;
+            if (point.Y > 100) return;
+            if (point.X < 1) return;
+            if (point.Y < 1) return;
+            var pole = Fields.Where(n => n.cordX == point.X && n.cordY == point.Y).First();
+            if (pole.Resource.Name != " ") return;
+            Fields.Remove(pole);
+            pole.Resource.Name = key;
+            Fields.Add(pole);
+            ilosciSurowcow[v] -= 1;
+            //if (v == 0) Console.WriteLine(ilosciSurowcow[v]);
+                SetResource(key, v, new Point(point.X + 1, point.Y));
+                SetResource(key, v, new Point(point.X, point.Y + 1));
+                SetResource(key, v, new Point(point.X - 1, point.Y));
+                SetResource(key, v, new Point(point.X, point.Y - 1));
+            }
+        }
 
-                        if (Map[losujX, losujY] != null)
-                        {
-                            emptyMap = false;
+        private List<Point> randomizePoints()
+        {
+            var list = new List<Point>();
+            var bestList = new List<Point>();
+            double bestDistance = 0;
+            list.Add(new Point(50, 50));
 
-                            continue;
-                        }
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    list.Add(new Point(Seed.Next(100) + 1, Seed.Next(100) + 1));
+                }
+                if (bestDistance < SumOfDistances(list))
+                {
+                    bestList = new List<Point>();
+                    bestList = list;
+                    bestDistance = SumOfDistances(list);
+                }
+                list = new List<Point>();
+                list.Add(new Point(50, 50));
+            }
+            return bestList;
+        }
 
-                        var pole = new Field();
-                        
-                        pole.Resource.Name = Pola[i].ToString();
-                        pole.cordX = losujX;
-                        pole.cordY = losujY;
-                        Fields.Add(pole);
-
-                    } while (emptyMap == false);  //zabezpieczenie przed przypisaniem surowca do pola na ktorym jest juz surowiec
-
+        private double SumOfDistances(List<Point> listaPunktow)
+        {
+            var suma = 0.0;
+            foreach (var item1 in listaPunktow)
+            {
+                foreach (var item2 in listaPunktow)
+                {
+                    suma += distance(item1, item2);
                 }
             }
-
-            // losowanie pozostałych 25%
-            for (int i = 0; i < 2500; i++)
-            {
-                do
-                {
-                    emptyMap = true;
-                    losujWspolrzedne(ref losujX, ref losujY);
-                    int losujSurowiec = rand.Next(0, 5);
-
-
-                    if (Map[losujX, losujY] != null)
-                    {
-                        emptyMap = false;
-                        continue; ;
-                    }
-
-                    var pole = new Field();
-                    pole.Resource.Name = Pola[losujSurowiec].ToString();
-                    pole.cordX = losujX;
-                    pole.cordY = losujY;
-                    Fields.Add(pole);
-
-                } while (emptyMap == false);
-            }
-
-            return Fields;
-
-
+            return suma;
         }
 
-
-        private static void losujWspolrzedne(ref int losujX, ref int losujY)
+        private Dictionary<string, int> randomizeProportions()
         {
-
-            // ograniczenie prawdopodobienstwa wylosowania w srodku
-            // pole powierzchni okolic ratusza = 64 kratki
-
-            do
+            string[] nazwySurowca = { "Drewno", "Złoto", "Węgiel", "Kamień", "Żelazo" };
+            int[] ilosciSurowca = new int[5];
+            for (int i = 0; i < 5; i++)
+                ilosciSurowca[i] += 500;
+            int surowiecLeft = 2500;
+            while (surowiecLeft > 0)
             {
-                losujX = rand.Next(0, 100);
-                losujY = rand.Next(0, 100);
-
-            } while ((losujX >= 49 && losujX <= 50) && (losujY >= 49 && losujY <= 50));
-
-
-            if ((losujX >= 46 && losujX <= 53) && (losujY >= 46 && losujY <= 53))
-            {
-                do
-                {
-                    losujX = rand.Next(0, 100);
-                    losujY = rand.Next(0, 100);
-                } while ((losujX >= 49 && losujX <= 50) && (losujY >= 49 && losujY <= 50));
+                int gdzie = Seed.Next(5);
+                int ile = Seed.Next(surowiecLeft + 1);
+                ilosciSurowca[gdzie] += ile;
+                surowiecLeft -= ile;
             }
-            else
-            {
+            var slownik = new Dictionary<string, int>();
+            for (int i = 0; i < 5; i++)
+                slownik.Add(nazwySurowca[i], ilosciSurowca[i]);
+            return slownik;
+        }
 
-            }
-
+        private double distance(Point P1, Point P2)
+        {
+            return Math.Sqrt(Math.Pow(P2.X - P1.X, 2) + Math.Pow(P2.Y - P1.Y, 2));
         }
     }
+
 }
