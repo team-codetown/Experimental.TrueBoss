@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataClassLibrary
 {
-    public class Class1
+    interface Interface1
     {
     }
 }
