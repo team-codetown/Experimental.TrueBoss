@@ -47,7 +47,6 @@
     <Compile Include="Engine\GatheringResourcesModel.cs" />
     <Compile Include="Engine\MapModel.cs" />
     <Compile Include="Objects\BuildingCard.cs" />
-    <Compile Include="Objects\Card.cs" />
     <Compile Include="Objects\Map.cs" />
     <Compile Include="Objects\Resource.cs" />
     <Compile Include="Program.cs" />

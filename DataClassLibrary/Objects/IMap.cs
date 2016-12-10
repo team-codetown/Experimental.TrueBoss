@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainEngineAlfa.Objects
+namespace DataObjects.Map
 {
-    class Card
+
+    public interface IMap
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataClassLibrary
 {
-    interface EventAccident
+    public interface IEventAccident
     {
         // nie ma dostępu do klasy Card (pls help)
         //int Fire(Card cardToIgnite);

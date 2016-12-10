@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 namespace DataObjects.Map
 {
 
-    public class Map
+    public class Map : IMap
     {
         public List<Field> Fields { get; set; }
         public Random Seed { get; set; }
         private int[] ilosciSurowcow;
+
         public Map()
         {
             Fields = new List<Field>();
@@ -158,6 +159,7 @@ namespace DataObjects.Map
         {
             return Math.Sqrt(Math.Pow(P2.X - P1.X, 2) + Math.Pow(P2.Y - P1.Y, 2));
         }
+
     }
 
 }

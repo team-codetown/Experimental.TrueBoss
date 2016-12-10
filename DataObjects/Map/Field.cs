@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataObjects.Map
 {
-    public class Field
+    public class Field : IField
     {
         public int cordX { get; set; }
         public int cordY { get; set; }

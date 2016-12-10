@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataObjects.Card
+namespace DataClassLibrary.Objects
 {
-    class CardType
+    public interface IPlayer
     {
     }
 }

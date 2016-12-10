@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataObjects.Card
+namespace MainEngineAlfa.Objects
 {
-    class MonsterCard
+    public interface ICard
     {
     }
 }

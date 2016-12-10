@@ -1,13 +1,13 @@
-﻿using DataClassLibrary.Objects;
+﻿using MainEngineAlfa.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataObjects.Player
+namespace DataObjects.Card
 {
-    class Player : IPlayer
+    class BuildingCard : ICard
     {
     }
 }

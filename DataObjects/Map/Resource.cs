@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataObjects.Map
 {
-    public class Resource
+    public class Resource : IResource
     {
         public string Name { get; set; }
 

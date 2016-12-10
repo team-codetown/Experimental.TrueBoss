@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataClassLibrary
+namespace DataObjects.Map
 {
-    interface ObjectTransporter
+    public interface IField
     {
     }
 }

@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataClassLibrary
 {
-    interface Extraction
+    public interface IWorldActions
     {
-        double DailyIncome();
-        double CaltulateMineExtraction();
+        bool ResetWorld();
+        bool DestroyWorld();
+
     }
 }

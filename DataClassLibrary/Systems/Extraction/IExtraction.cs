@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataObjects.Card
+namespace DataClassLibrary
 {
-    class BuildingCard
+    public interface IExtraction
     {
+        double DailyIncome();
+        double CaltulateMineExtraction();
     }
 }

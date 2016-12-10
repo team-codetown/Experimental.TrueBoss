@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataClassLibrary
 {
-    interface CardActions
+    public interface IObjectTransporter
     {
-        bool PlaceCard();
-        bool PickUpCard();
-        bool SellCard();
-        bool BuyCard();
-       
     }
 }

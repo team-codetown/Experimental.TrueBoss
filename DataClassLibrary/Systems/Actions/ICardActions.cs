@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataClassLibrary
 {
-    interface ActionError
+    public interface ICardActions
     {
-        // ErrorMessage CardActionsError(); -> brak klasy, stworzyc klase,
-        // czy ma zwracac string? 
+        bool PlaceCard();
+        bool PickUpCard();
+        bool SellCard();
+        bool BuyCard();
+       
     }
 }

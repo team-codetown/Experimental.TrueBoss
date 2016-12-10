@@ -1,13 +1,12 @@
-﻿using DataClassLibrary.Objects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataObjects.Player
+namespace DataObjects.Map
 {
-    class Player : IPlayer
+    public interface IPoint
     {
     }
 }

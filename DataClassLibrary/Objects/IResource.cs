@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataClassLibrary
+namespace DataObjects.Map
 {
-    interface WorldActions
+    public interface IResource
     {
-        bool ResetWorld();
-        bool DestroyWorld();
-
     }
 }
