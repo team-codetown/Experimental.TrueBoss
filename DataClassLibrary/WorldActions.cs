@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataClassLibrary
 {
-    interface Interface2
+    interface WorldActions
     {
+        bool ResetWorld();
+        bool DestroyWorld();
+
     }
 }

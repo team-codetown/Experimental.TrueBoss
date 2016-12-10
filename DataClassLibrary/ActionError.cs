@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataClassLibrary
 {
-    interface Interface1
+    interface ActionError
     {
+        // ErrorMessage CardActionsError(); -> brak klasy, stworzyc klase,
+        // czy ma zwracac string? 
     }
 }
