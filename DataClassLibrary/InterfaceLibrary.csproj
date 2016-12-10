@@ -40,14 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionError.cs" />
-    <Compile Include="Backup_Log.cs" />
-    <Compile Include="CardActions.cs" />
-    <Compile Include="EventAccident.cs" />
-    <Compile Include="Extraction.cs" />
-    <Compile Include="ObjectTransporter.cs" />
+    <Compile Include="Interfaces\IActionError.cs" />
+    <Compile Include="Interfaces\IBackup_Log.cs" />
+    <Compile Include="Interfaces\ICardActions.cs" />
+    <Compile Include="Interfaces\IEventAccident.cs" />
+    <Compile Include="Interfaces\IExtraction.cs" />
+    <Compile Include="Interfaces\IObjectTransporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorldActions.cs" />
+    <Compile Include="Interfaces\IWorldActions.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
