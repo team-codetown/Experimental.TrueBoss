@@ -10,6 +10,7 @@ namespace DataClassLibrary
     {
         // nie ma dostępu do klasy Card (pls help)
         //int Fire(Card cardToIgnite);
+        //muahahahaha
         int Flood();
         int EarthQuake();
         int Hurricane();
